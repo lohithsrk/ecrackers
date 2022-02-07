@@ -1,0 +1,74 @@
+<%-include('partials/header.ejs')%>
+<section class="mainnn">
+            <!-- Header Area End Here -->
+            <!-- Begin Li's Breadcrumb Area -->
+            <div class="breadcrumb-area">
+                <div class="container">
+                    <div class="breadcrumb-content">
+                        <ul>
+                            <li><a href="/">Home</a></li>
+                            <li class="active">My Profile</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Li's Breadcrumb Area End Here -->
+            <!-- Begin Login Content Area -->
+            <div class="page-section">
+                <div class="row m-4 LargeScreen">
+
+              <div class="card border border-0 col-lg-7 col-md-6 col-sm-12 mainCard" >
+                <div class="card-body">
+                  <h1><%= user.firstName %> <%= user.lastName %> </h1>
+                  <p class="title"><%= user.email %></p>
+                  <button class="btn btn-dark text-light shadow-none text-center  sign-out-Button">Sign Out</button>
+              </div>
+              </div>
+              <div class="col-lg-5 col-md-6 col-sm-12 card border border-0"  >
+                <div class="card-header">Items in<a class="float-right">Count</a></div>
+                <ul class="list-group list-group-flush">
+                  <!-- <li class="list-group-item">Orders<a class="float-right ">3</a></li> -->
+                  <li class="list-group-item"><a href="/wishlist">Wishlist<a class="float-right wishlist-item-count1">0</a></a></li>
+                  <li class="list-group-item"><a href="/shopping-cart">Cart<a class="float-right cart-item-count1">0</a></a></li>
+                </ul>
+              </div>
+              </div>
+              </div>
+
+
+
+            <!-- Login Content Area End Here -->
+            <!-- Begin Footer Area -->
+          </section>
+          <script src="../js/header.js"></script>
+
+            <script type="text/javascript">
+              (async () =>{
+                const cart = await fetch('/cartDetails', {
+                    method: 'POST',
+                    body: JSON.stringify({ _id: "<%= user===null ?null: user._id %>" }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                const cartData = await cart.json()
+                const cartCount = cartData.cart.reduce((acc, val) => acc + val.count, 0)
+                document.querySelector('.cart-item-count1').textContent = cartCount ?? 0
+                const wishlist = await fetch('/wishlistdetails', {
+                    method: 'POST',
+                    body: JSON.stringify({ _id: "<%=user===null?null: user._id %>" }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                const wishlistdata = await wishlist.json()
+                const wishlistCount = wishlistdata.wishlist.length
+                document.querySelector('.wishlist-item-count1').textContent = wishlistCount ?? 0
+              } )()
+                var signout=async ()=>{
+                      const res = await fetch('/signout', {method: 'POST',body:{}})
+                      window.location.reload()
+                }
+                document.querySelector('.sign-out-Button').addEventListener('click', ()=> signout())
+            </script>
+  <%-include('partials/footer')%>

@@ -1,0 +1,278 @@
+<div class="footer">
+    <!-- Begin Footer Static Top Area -->
+    <!-- Footer Static Top Area End Here -->
+    <!-- Begin Footer Static Middle Area -->
+    <div class="footer-static-middle">
+        <div class="container">
+            <div class="footer-logo-wrap pt-50 pb-35">
+                <div class="row">
+                  <div class="col-lg-4 ">
+                      <ul class="des">
+                          <li>
+                              <span>Phone: </span>
+                              <a href="#">+91 9363352877</a>
+                          </li>
+                          <li>
+                              <span>Email: </span>
+                              <a href="mailto://info@yourdomain.com">admin@digitranit.com</a>
+                          </li>
+                      </ul>
+                      <div class="footer-block">
+                          <h3 class="footer-block-title">Follow Us</h3>
+                          <ul class="social-link">
+
+                              <li class="google-plus">
+                                  <a href="https://mail.google.com/" data-toggle="tooltip" target="_blank" title="Google Plus">
+                                      <i class="fa fa-envelope"></i>
+                                  </a>
+                              </li>
+                              <li class="facebook">
+                                  <a href="https://www.facebook.com/profile.php?id=100072822087652" data-toggle="tooltip" target="_blank" title="Facebook">
+                                      <i class="fa fa-facebook"></i>
+                                  </a>
+                              </li>
+                              <li class="instagram">
+                                  <a href="https://www.instagram.com/digitranit/" data-toggle="tooltip" target="_blank" title="Instagram">
+                                      <i class="fa fa-instagram"></i>
+                                  </a>
+                              </li>
+                          </ul>
+                      </div>
+                      <!-- Begin Footer Newsletter Area -->
+
+                      <!-- Footer Newsletter Area End Here -->
+                  </div>
+                    <!-- Begin Footer Logo Area -->
+                    <!-- Footer Logo Area End Here -->
+                    <!-- Begin Footer Block Area -->
+                    <div class="col-lg-4 navLinks" >
+
+                      <h5 class="footer-block-title footer-header">Explore</h5>
+                      <ul class="des">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/shop-left-sidebar">Shop</a></li>
+                        <li><a href="/shopping-cart">Cart</a></li>
+                        <li><a href="/login-login" class="signoutFooter">Sign out</a></li>
+                      </ul>
+                    </div>
+
+                    <!-- Footer Block Area End Here -->
+                    <!-- Begin Footer Block Area -->
+                    <div class="col-lg-4 logoSection">
+                        <div class="footer-logo">
+                            <a href="/"> <img src="/images/menu/logo/logoRa.png" alt="Footer Logo"></a>
+                            <p class="info">
+                              Designed and Developed by DigitranIT
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <!-- Footer Block Area End Here -->
+                    <!-- Begin Footer Block Area -->
+                    <!-- Footer Block Area End Here -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer Static Middle Area End Here -->
+
+</div>
+<!-- Body Wrapper End Here -->
+<!-- jQuery-V1.12.4 -->
+<script src="/js/vendor/jquery-1.12.4.min.js"></script>
+<!-- Popper js -->
+<script src="/js/vendor/popper.min.js"></script>
+<!-- Bootstrap V4.1.3 Fremwork js -->
+<script src="/js/bootstrap.min.js"></script>
+<!-- Ajax Mail js -->
+<script src="/js/ajax-mail.js"></script>
+<!-- Meanmenu js -->
+<script src="/js/jquery.meanmenu.min.js"></script>
+<!-- Wow.min js -->
+<script src="/js/wow.min.js"></script>
+<!-- Slick Carousel js -->
+<script src="/js/slick.min.js"></script>
+<!-- Owl Carousel-2 js -->
+<script src="/js/owl.carousel.min.js"></script>
+<!-- Magnific popup js -->
+<script src="/js/jquery.magnific-popup.min.js"></script>
+<!-- Isotope js -->
+<script src="/js/isotope.pkgd.min.js"></script>
+<!-- Imagesloaded js -->
+<script src="/js/imagesloaded.pkgd.min.js"></script>
+<!-- Mixitup js -->
+<script src="/js/jquery.mixitup.min.js"></script>
+<!-- Countdown -->
+<script src="/js/jquery.countdown.min.js"></script>
+<!-- Counterup -->
+<script src="/js/jquery.counterup.min.js"></script>
+<!-- Waypoints -->
+<script src="/js/waypoints.min.js"></script>
+<!-- Barrating -->
+<script src="/js/jquery.barrating.min.js"></script>
+<!-- Jquery-ui -->
+<script src="/js/jquery-ui.min.js"></script>
+<!-- Venobox -->
+<script src="/js/venobox.min.js"></script>
+<!-- Nice Select js -->
+<script src="/js/jquery.nice-select.min.js"></script>
+<!-- ScrollUp js -->
+<script src="/js/scrollUp.min.js"></script>
+<!-- Main/Activator js -->
+<script src="/js/main.js"></script>
+<script src="/js/header.js" charset="utf-8"></script>
+<script src="/js/AddProductToCart.js" charset="utf-8"></script>
+
+        <script>
+            window.onload = async () => {
+                const res = await fetch('/cartDetails', {
+                    method: 'POST',
+                    body: JSON.stringify({ _id: "<%= user===null ? null : user._id %>" }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+
+                const data = await res.json()
+                const cartCount = data.cart.reduce((acc, val) => acc + val.count, 0)
+                document.querySelectorAll('.cart-item-count')[1].textContent = cartCount ?? 0
+                document.querySelector(".minicart-product-list").innerHTML = data.cart.reduce((acc, product) => {
+                    acc += `
+                        <li>
+                            <a href="/single-product/${product.id}" class="minicart-product-image">
+                                <img src="${product.image}" alt="cart products">
+                            </a>
+                            <div class="minicart-product-details">
+                                <h6><a href="/single-product/${product.id}">${product.name}</a></h6>
+                                <span>${product.discount} x ${product.count}</span>
+                            </div>
+                            <button class="close" title="Remove" data-id="${product.id}">
+                                <i class="fa fa-close" data-id="${product.id}"></i>
+                            </button>
+                        </li>`
+                    return acc
+                }, '')
+
+                const remove = document.querySelectorAll('button.close[data-id]')
+                const update = async (e) => {
+                    const productID = e.target.getAttribute('data-id');
+                    try {
+                        const response = await fetch('/remove', {
+                            method: 'POST',
+                            body: JSON.stringify({ id: productID, _id: "<%=user===null?null: user._id %>" }),
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        })
+                        const details = await response.json()
+                        const res = await fetch('/cartDetails', {
+                            method: 'POST',
+                            body: JSON.stringify({ _id: "<%= user===null ?null: user._id %>" }),
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        })
+
+                        const data = await res.json()
+                        const cartCount = data.cart.length
+                        document.querySelectorAll('.cart-item-count')[1].textContent = cartCount ?? 0
+
+                        document.querySelector(".minicart-product-list").innerHTML = data.cart.reduce((acc, product) => {
+                            acc += `<li>
+                                    <a href="/single-product/${product.id}" class="minicart-product-image">
+                                        <img src="${product.image}" alt="cart products">
+                                    </a>
+                                    <div class="minicart-product-details">
+                                        <h6><a href="/single-product/${product.id}">${product.name}</a></h6>
+                                        <span>${product.discount} x ${product.count}</span>
+                                    </div>
+                                    <button class="close" data-id="${product.id}">
+                                        <i class="fa fa-close" data-id="${product.id}"></i>
+                                    </button>
+                                </li>`
+                            return acc
+                        }, '')
+                        window.location.reload()
+                    } catch (e) {
+                        alert("Can't remove item from cart")
+                    }
+                }
+                remove.forEach(elmt => {
+                    elmt.addEventListener('click', e => {
+                      e.preventDefault();
+                       update(e)
+                    })
+                })
+            }
+            const wishdetails=async()=>{
+                const res = await fetch('/wishlistdetails', {
+                    method: 'POST',
+                    body: JSON.stringify({ _id: "<%=user===null?null: user._id %>" }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+
+                const data = await res.json()
+                const wishlistCount = data.wishlist.length
+                document.querySelectorAll('.wishlist-item-count')[0].textContent = wishlistCount ?? 0
+            }
+            const addToWishlistLink = document.querySelectorAll(".add-to-wishlist-link")
+
+            addToWishlistLink.forEach(addToWishlist => {
+                addToWishlist.addEventListener('click', async e => {
+                    e.preventDefault()
+                    if (document.querySelector('.msg').getAttribute('data-msg').length > 0){
+                        document.querySelector('.frame1').classList.remove("hide")
+                  		document.querySelector('.loginModal').style.display = 'block'
+                  		document.querySelector('.redirectHome').addEventListener('click',()=>{window.location.assign("/login-login")})
+                			// alert(document.querySelector('.msg').getAttribute('data-msg'));
+                			return;
+                    }else{
+                      document.querySelector('.frame3').classList.remove("hide")
+                			document.querySelector('.WishlistModal').style.display = 'block'
+                			document.querySelector('.addWishlist').addEventListener('click',()=>{
+                        wishdetails()
+                        window.location.reload()
+                      })
+                    }
+                    try {
+                        const resp = await fetch('/wishlistUpdate', {
+                            method: 'POST',
+                            body: JSON.stringify({
+                                id: e.target.id,
+                                uid: e.target.getAttribute("data-uid")
+                            }),
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        })
+                        const data = await res.json()
+                        wishdetails()
+
+                    } catch (e) {
+                        console.log({ e })
+                    }
+                })
+            })
+            window.addEventListener('load',()=>{
+                wishdetails()
+            })
+            // document.querySelector('.sign_out_Button1').addEventListener('click',async ()=>{
+            //       var resultSign = await fetch('/signout', {method: 'POST',body:{}})
+            //       window.location.reload()
+            // })
+            document.querySelector('.signoutFooter').addEventListener('click',async ()=>{
+                  var resultSign = await fetch('/signout', {method: 'POST',body:{}})
+                  window.location.reload()
+            })
+        </script>
+
+
+
+
+</body>
+
+<!-- faq32:14-->
+</html>

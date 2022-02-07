@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chart</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/vendorDashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+</head>
+
+<body>
+    <div class="somecontent">
+        <nav class="content">
+            <h1 class="text-center py-3">Ecrackers</h1>
+            <ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
+                <li class="text-dark nav-item ps-4">
+                    <a class="nav-link d-flex" href="#" >
+                        <p class="nav-link profilePic"></p>
+                        <div class="vendorDetails d-block my-auto ps-3">
+                            <p class="text-dark fw-bold ">Vendor Name</p>
+                            <p class="text-dark vendorEmail">Vendor Email</p>
+                        </div>
+                        <i class="fa fa-check faa text-success my-auto ms-auto pe-3"></i>
+                    </a>
+                </li>
+                <li class="nav-item ps-4">
+                    <a href="" class="text-dark nav-link">Email<i class="fa faa fa-envelope-o pe-3"></i></a>
+                </li>
+                <li class="nav-item ps-4">
+                    <a href="" class="text-dark nav-link">Notifications<i class="fa faa fa-bell-o pe-3"></i></a>
+                </li>
+                <li class="nav-item ps-4">
+                    <a href="" class="text-dark nav-link">Details<i class="fa faa fa-info-circle pe-3"></i></a>
+                </li>
+                <li class="nav-item ps-4">
+                    <a href="" class="text-dark nav-link">Coupons<i class="fa faa fa-circle-o pe-3"></i></a>
+                </li>
+                <li class="nav-item ps-4">
+                    <a href="" class="text-dark nav-link">Add Product<i class="fa faa fa-plus pe-3"></i></a>
+                </li>
+                <li class="nav-item ps-4">
+                    <a href="" class="text-dark nav-link">Remove Product<i class="fa faa fa-minus pe-3"></i></a>
+                </li>
+                <li class="nav-item ps-4">
+                    <a href="" class="text-dark nav-link">SignOut<i class="fa faa fa-power-off pe-3"></i></a>
+                </li>
+                <li class="nav-item px-4 my-3">
+                    <a href="" class="text-light nav-link btn btn-danger px-1">Permanently delete your vendor account</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="mainContainer">
+            <nav class="navbar navbar-expand-lg navbar-light navbarColor">
+                <div class="container-fluid">
+                    <button class="nav-link button-dark float-start text-dark"><i class="fa button-dark fa-bars fa-2x px-3"></i></button>
+                    <ul class="navbar-nav mb-2 mb-lg-0 ms-auto py-3">
+                        <li class="nav-item">
+                            <a href="" class="btn btn-danger shadow-none text-light nav-link"><i class="fa fa-power-off pe-2"></i>Signout</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="dashboardContainer mx-4">
+                <div class="icon mx-4 py-4">
+                    <h4>Dashboard</h4>
+                </div>
+                <div class="row gap-3 mx-4">
+                    <div class="col coll rounded Sales">
+                        <div class="salesDetails p-4">
+                            <div class="headCard d-flex">
+                                <h5 class="SalesText">Weekly Sales</h5>
+                                <div class="dayCard d-flex ms-auto">
+                                    <p class=" mx-1 px-1 fw-bold btn-primary weeklySales">W</p>
+                                    <p class="px-1 mx-1 fw-bold btn-primary monthlySales">M</p>
+                                    <p class="px-2 mx-1 fw-bold btn-primary yearlySales">Y</p>
+                                </div>
+                            </div>
+                            <h1 class="text-center py-2 SalesMoney">Rs. 15,000</h1>
+                            <h6 class="py-2 SalesIncPercent">Increased by 20%</h6>
+                        </div>
+                    </div>
+                    <div class="col coll rounded Orders">
+                        <div class="salesDetails p-4">
+                            <div class="headCard d-flex">
+                                <h5 class="OrderText">Weekly Orders</h5>
+                                <div class="dayCard d-flex ms-auto">
+                                    <p class=" mx-1 px-1 fw-bold btn-primary weeklyOrders">W</p>
+                                    <p class="px-1 mx-1 fw-bold btn-primary monthlyOrders">M</p>
+                                    <p class="px-2 mx-1 fw-bold btn-primary yearlyOrders">Y</p>
+                                </div>
+                            </div>
+                            <h1 class="text-center py-2 OrderNumber">2,000</h1>
+                            <h6 class="py-2 OrderIncPercent">Increased by 10%</h6>
+                        </div>
+                    </div>
+                    <div class="col coll rounded Profit">
+                        <div class="salesDetails p-4">
+                            <div class="headCard d-flex">
+                                <h5 class="ProfitText">Weekly Profit</h5>
+                                <div class="dayCard d-flex ms-auto">
+                                    <p class=" mx-1 px-1 fw-bold btn-primary weeklyProfit">W</p>
+                                    <p class="px-1 mx-1 fw-bold btn-primary monthlyProfit">M</p>
+                                    <p class="px-2 mx-1 fw-bold btn-primary yearlyProfit">Y</p>
+                                </div>
+                            </div>
+                            <h1 class="text-center py-2 ProfitMoney">Rs. 2,000</h1>
+                            <h6 class="py-2 ProfitIncPercent">Increased by 5%</h6>
+                        </div>
+                    </div>
+                </div>
+                <div  class="weekChart mx-4 my-4 p-3 border bg-light border-danger">
+                    <div class="headDash pb-4 d-flex">
+                        <h5>Sales Report</h5>
+                        <div class="dayCard d-flex ms-auto">
+                            <p class=" mx-1 px-1 fw-bold btn-dark weekly">W</p>
+                            <p class="px-1 mx-1 fw-bold btn-dark monthly">M</p>
+                            <p class="px-2 mx-1 fw-bold btn-dark yearly">Y</p>
+                        </div>
+                        <div class="colorPicker d-flex ms-auto">
+                            <h6 class="d-flex pe-3"><p class="Ocircle me-1"></p>Orders</h6>
+                            <h6 class="d-flex pe-2"><p class="Pcircle me-1"></p>Profit</h6>
+                            <h6 class="d-flex pe-1"><p class="Scircle me-1"></p>Sales</h6>
+                        </div>
+                    </div>
+                    <canvas id="myChart"></canvas>
+                </div>
+                <div class="productNamesandSales m-4">
+                    <div class="row">
+                        <div class="col-6 m-auto px-4">
+                            <h3 class="text-center pb-3">Product List</h3>
+                            <table class="table table-hover">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Prod ID</th>
+                                    <th scope="col">Product Name</th>
+                                    <th scope="col">Product Quantity</th>
+                                    <th scope="col">Product Price</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <th scope="row">1</th>
+                                    <td>Cracker 1</td>
+                                    <td>300</td>
+                                    <td>80.00</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">2</th>
+                                    <td>Cracker 1</td>
+                                    <td>50</td>
+                                    <td>200.00</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">3</th>
+                                    <td >Cracker 3</td>
+                                    <td >30</td>
+                                    <td>100.00</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">3</th>
+                                    <td >Cracker 3</td>
+                                    <td >30</td>
+                                    <td>100.00</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                        </div>
+                        <div class="col-6 bg-light px-4">
+                            <h5 class="text-center py-4">Sales Report</h5>
+                            <div class="chartcol m-auto">
+                                <canvas id="productChart"></canvas>
+                            </div>
+                            <div class="headDash pt-4 d-flex">
+                                <div class="colorPicker m-auto d-flex">
+                                    <h6 class="d-flex pe-3"><p class="Ocircle Cracker1 me-2"></p>Cracker1</h6>
+                                    <h6 class="d-flex pe-3"><p class="Pcircle Cracker2 me-2"></p>Cracker2</h6>
+                                    <h6 class="d-flex pe-3"><p class="Scircle Cracker3 me-2"></p>Cracker3</h6>
+                                    <h6 class="d-flex pe-3"><p class="Scircle Cracker4 me-2"></p>Cracker4</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ordersList m-4">
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                        <div class="container-fluid">
+                          <a class="navbar-brand orders" href="#">Orders List</a>
+                          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                          </button>
+                          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                            <ul class="navbar-nav ms-auto pe-5">
+                                <select class="form-select shadow-none selectButton" aria-label="Default select example">
+                                    <option selected>All Orders</option>
+                                    <option value="1">Pending</option>
+                                    <option value="2">Delivered</option>
+                                    <option value="3">Returned</option>
+                                </select>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                    </nav>
+                    <table class="table table-hover table-bordered">
+                        <thead>
+                          <tr>
+                            <th scope="col">Order Id</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">Products</th>
+                            <th scope="col">Mobile Number</th>
+                            <th scope="col">Email Address</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Status</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">3545154</th>
+                                <td>Rajeev</td>
+                                <td>
+                                    <p>Cracker1 x 1</p>
+                                    <p>Cracker1 x 1</p>
+                                </td>
+                                <td>+91 8454 xxx xxx</td>
+                                <td>crackers@gmail.com</td>
+                                <td>Rs. 400.00</td>
+                                <td>D.no 34, kundrathur, Chennai</td>
+                                <td>Pending</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3545154</th>
+                                <td>Rajeev</td>
+                                <td>
+                                    <p>Cracker1 x 1</p>
+                                    <p>Cracker1 x 1</p>
+                                </td>
+                                <td>+91 8454 xxx xxx</td>
+                                <td>crackers@gmail.com</td>
+                                <td>Rs. 400.00</td>
+                                <td>D.no 34, kundrathur, Chennai</td>
+                                <td>Returned</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3545154</th>
+                                <td>Rajeev</td>
+                                <td>
+                                    <p>Cracker1 x 1</p>
+                                </td>
+                                <td>+91 8454 xxx xxx</td>
+                                <td>crackers@gmail.com</td>
+                                <td>Rs. 400.00</td>
+                                <td>D.no 34, kundrathur, Chennai</td>
+                                <td>Delivered</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3545154</th>
+                                <td>Rajeev</td>
+                                <td>
+                                    <p>Cracker1 x 1</p>
+                                    <p>Cracker1 x 1</p>
+                                </td>
+                                <td>+91 8454 xxx xxx</td>
+                                <td>crackers@gmail.com</td>
+                                <td>Rs. 400.00</td>
+                                <td>D.no 34, kundrathur, Chennai</td>
+                                <td>Pending</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3545154</th>
+                                <td>Rajeev</td>
+                                <td>
+                                    <p>Cracker1 x 1</p>
+                                </td>
+                                <td>+91 8454 xxx xxx</td>
+                                <td>crackers@gmail.com</td>
+                                <td>Rs. 400.00</td>
+                                <td>D.no 34, kundrathur, Chennai</td>
+                                <td>Pending</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3545154</th>
+                                <td>Rajeev</td>
+                                <td>
+                                    <p>Cracker1 x 1</p>
+                                    <p>Cracker1 x 1</p>
+                                </td>
+                                <td>+91 8454 xxx xxx</td>
+                                <td>crackers@gmail.com</td>
+                                <td>Rs. 400.00</td>
+                                <td>D.no 34, kundrathur, Chennai</td>
+                                <td>Pending</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3545154</th>
+                                <td>Rajeev</td>
+                                <td>
+                                    <p>Cracker1 x 1</p>
+                                </td>
+                                <td>+91 8454 xxx xxx</td>
+                                <td>crackers@gmail.com</td>
+                                <td>Rs. 400.00</td>
+                                <td>D.no 34, kundrathur, Chennai</td>
+                                <td>Pending</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="FeedbackSection m-4">
+                    <div class="row ">
+                        <div class="col-8 border border-dark p-3" >
+                            <div class="row">
+                                <div class="col">
+                                    <img src="./pexels-kelvin-valerio-810775 (1).jpg" style="height: 200px; width: 100%; letter-spacing: 0.4px;" />
+                                    <div class="productDetails pt-2">
+                                        <h5 style="letter-spacing: 0.4px;">Product Name</h5>
+                                        <div class="descAndPrice d-flex" style="line-height: 10px;">
+                                            <p>A cracker product</p>
+                                            <p class="ms-auto">Rs. 500.00</p>
+                                        </div>
+                                        <div class="d-flex soldQuantity" style="line-height: 10px; letter-spacing: 0.4px;">
+                                            <p>Sold quantity</p>
+                                            <p class="ms-auto">300</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <h3 class="text-center pb-2">Reviews &Feedback</h3>
+                                    <ul class="list-group">
+                                        <li class="list-group-item active" aria-current="true">
+                                            <h5>Username</h5>
+                                            <p>Quisque velit nisi, pretium ut lacinia in, elementum id enim. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                        </li>
+                                        <li class="list-group-item " aria-current="true">
+                                            <h5>Username</h5>
+                                            <p>Quisque velit nisi, pretium ut lacinia in, elementum id enim. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                        </li>
+                                        <li class="list-group-item " aria-current="true">
+                                            <h5>Username</h5>
+                                            <p>Quisque velit nisi, pretium ut lacinia in, elementum id enim. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                        </li>
+                                        <li class="list-group-item " aria-current="true">
+                                            <h5>Username</h5>
+                                            <p>Quisque velit nisi, pretium ut lacinia in, elementum id enim. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                        </li>
+                                        <li class="list-group-item " aria-current="true">
+                                            <h5>Username</h5>
+                                            <p>Quisque velit nisi, pretium ut lacinia in, elementum id enim. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                        </li>
+                                        <li class="list-group-item " aria-current="true">
+                                            <h5>Username</h5>
+                                            <p>Quisque velit nisi, pretium ut lacinia in, elementum id enim. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                        </li>
+
+                                        <li class="list-group-item " aria-current="true">
+                                            <h5>Username</h5>
+                                            <p>Quisque velit nisi, pretium ut lacinia in, elementum id enim. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                        </li>
+                                        <li class="list-group-item " aria-current="true">
+                                            <h5>Username</h5>
+                                            <p>Quisque velit nisi, pretium ut lacinia in, elementum id enim. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                        </li>
+                                        <li class="list-group-item " aria-current="true">
+                                            <h5>Username</h5>
+                                            <p>Quisque velit nisi, pretium ut lacinia in, elementum id enim. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 FeedbackContainer mx-auto">
+                            <h3 class="text-center pb-3">Product List</h3>
+                            <canvas id="productRating"></canvas>
+                            <div class="colorPicker pt-3 d-flex">
+                                <h6 class="d-flex ms-auto pe-3"><p class="Ocircle Cracker_1 me-2"></p>Cracker1</h6>
+                                <h6 class="d-flex pe-3"><p class="Pcircle Cracker_2 me-2"></p>Cracker2</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/vendorDashboard.js"></script>
+</body>
+<!-- Photo by Kelvin Valerio from Pexels -->
+</html>

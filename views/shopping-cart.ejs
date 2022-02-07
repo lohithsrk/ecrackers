@@ -1,0 +1,292 @@
+<%-include('partials/header.ejs')%>
+<section class="mainnn">
+	<!-- Header Area End Here -->
+	<!-- Begin Li's Breadcrumb Area -->
+<!-- Header Area End Here -->
+<!-- Begin Li's Breadcrumb Area -->
+<div class="frame4 hide">
+  <div class="removeModal">
+    <p class="text-center my-5 mx-auto">Remove from Cart</p>
+      <div class="d-flex p-2">
+      <button class="removeCartItem btn btn-danger shadow-none">  REMOVE  </button>
+      <button class=" removeCartItemNo btn btn-dark shadow-none">  NO  </button>
+    </div>
+  </div>
+  </div>
+<div class="breadcrumb-area">
+	<div class="container">
+		<div class="breadcrumb-content">
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li class="active">Shopping Cart</li>
+			</ul>
+		</div>
+	</div>
+	</div>
+	<!-- Li's Breadcrumb Area End Here -->
+	<!--Shopping Cart Area Start-->
+	<div class="Shopping-cart-area pt-60 pb-60">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<form action="#">
+						<div class="table-content table-responsive">
+							<table class="table">
+								<thead>
+									<tr>
+										<th class="li-product-thumbnail">images</th>
+										<th class="cart-product-name">Product</th>
+										<th class="li-product-price">Unit Price</th>
+										<th class="li-product-quantity">Quantity</th>
+										<th class="li-product-subtotal">Sub-Total</th>
+										<th class="li-product-remove">remove</th>
+									</tr>
+								</thead>
+								<tbody class="tbody" data-uid="<%=user._id%>"></tbody>
+							</table>
+						</div>
+						<div class="row">
+							<div class="col-12">
+								<div class="coupon-all">
+									<div class="coupon" style="display: none">
+										<input
+											id="coupon_code"
+											class="input-text"
+											name="coupon_code"
+											value=""
+											placeholder="Coupon code"
+											type="text"
+										/>
+										<input
+											class="button"
+											name="apply_coupon"
+											value="Apply coupon"
+											type="submit"
+										/>
+									</div>
+									<div class="coupon2">
+										<input
+											class="button"
+											name="update_cart"
+											value="Update cart"
+											type="submit"
+											style="display: none"
+										/>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-5 ml-auto">
+								<div class="cart-page-total">
+									<h2>Cart totals</h2>
+									<ul>
+										<!-- <li>Subtotal <span>₹0.00</span></li> -->
+										<li>Total <span class="cart-total">₹0.00</span></li>
+									</ul>
+									<a href="/checkout">Proceed to checkout</a>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--Shopping Cart Area End-->
+	<!-- Begin Footer Area -->
+</section>
+<script src="../js/header.js"></script>
+
+<script>
+	window.addEventListener('load', async () => {
+		const cartQuantiy = await fetch('/cartDetails', {
+			method: 'POST',
+			body: JSON.stringify({ _id: '<%= user._id %>' }),
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		});
+		const cartData = await cartQuantiy.json();
+		var productLengthArray = [],
+			cartTotal = [];
+		const productLength = cartData.cart.forEach((element) => {
+			return productLengthArray.push(parseInt(element.count));
+		});
+    const counts = {}
+    cartData.cart.forEach((i) => {
+      counts[i.id] = i.count
+    });
+
+    console.log(cartData.cart)
+		const response = await fetch('/shopping-cart', {
+			method: 'POST',
+			body: JSON.stringify({
+				_id: document.querySelector('.tbody').getAttribute('data-uid')
+			}),
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		});
+		const data = await response.json();
+		data.forEach((d, index) => {
+			const tr = document.createElement('tr');
+			const td1 = document.createElement('td');
+			const td2 = document.createElement('td');
+			const td3 = document.createElement('td');
+			const td4 = document.createElement('td');
+			const td5 = document.createElement('td');
+			const td6 = document.createElement('td');
+			const a1 = document.createElement('a');
+			const a2 = document.createElement('a');
+			const a3 = document.createElement('a');
+			const i1 = document.createElement('i');
+			const img2 = document.createElement('img');
+			const span4 = document.createElement('span');
+			const span6 = document.createElement('span');
+			const label5 = document.createElement('label');
+			const div5 = document.createElement('div');
+			const input5 = document.createElement('input');
+
+			tr.setAttribute('class', 'tbodytr');
+
+			td2.setAttribute('class', 'li-product-thumbnail');
+			a2.setAttribute('href', '#');
+			img2.setAttribute('src', `${d.image}`);
+			img2.setAttribute('alt', `${d.name}`);
+			img2.setAttribute('class', 'imageResponsive');
+			img2.setAttribute('class', 'imageLarge');
+			a2.appendChild(img2);
+			td2.appendChild(a2);
+			tr.appendChild(td2);
+
+			td3.setAttribute('class', 'li-product-name');
+			// a3.setAttribute('href', '#');
+			a3.innerText = d.name;
+			td3.appendChild(a3);
+			tr.appendChild(td3);
+
+			td4.setAttribute('class', 'li-product-price');
+			span4.setAttribute('class', 'amount');
+			span4.innerText = d.discount;
+			td4.appendChild(span4);
+			tr.appendChild(td4);
+
+			td5.setAttribute('class', 'quantity');
+			// label5.innerText = 'Quantity';
+			td5.appendChild(label5);
+			div5.setAttribute('class', 'cart-plus-minus');
+			input5.setAttribute('class', 'cart-plus-minus-box textAlign');
+			input5.setAttribute('data-uid', '<%= user._id %>');
+			input5.setAttribute('data-prodid', d.id);
+			input5.setAttribute('value', counts[d.id]);
+			input5.setAttribute('min', 1);
+			input5.setAttribute('type', 'number');
+			input5.setAttribute('data-price', d.discount);
+			div5.appendChild(input5);
+			td5.appendChild(div5);
+			tr.appendChild(td5);
+
+			td6.setAttribute('class', 'product-subtotal');
+			span6.setAttribute('class', 'Subamount');
+			span6.setAttribute('data-price', d.discount);
+			var subTotal = `${
+				parseInt(d.discount.replace('₹ ', '')) *
+				parseInt(counts[d.id])
+			}`;
+			span6.innerText = `₹${subTotal}`;
+			td6.appendChild(span6);
+			tr.appendChild(td6);
+
+			td1.setAttribute('class', 'li-product-remove');
+			a1.setAttribute('href', '#');
+			i1.setAttribute('class', 'fa fa-times');
+			i1.setAttribute('onclick', `remove('${d.id}')`);
+			a1.appendChild(i1);
+			td1.appendChild(a1);
+			tr.appendChild(td1);
+
+			document.querySelector('.tbody').appendChild(tr);
+		});
+		//	var cartInsert=document.querySelectorAll(".Subamount").forEach((e)=>{return cartTotal.push(e.innerHTML.replace("₹ ",""))})
+		//    var totalAmount=cartTotal.reduce((a,b)=> { return parseInt(a)+parseInt(b) }, 0)
+		//    document.querySelector('.cart-total').textContent=`₹ ${totalAmount}`
+		const tBody = document.querySelectorAll('.tbodytr');
+		tBody.forEach((tb) => {
+			const input = tb.children[3].children[1].children[0];
+			const price = tb.children[4].children[0];
+			var subTotal =
+				document.querySelector('.cart-page-total').children[1].children[0]
+					.children[0];
+			subTotal.innerText = `₹ ${
+				parseInt(price.textContent.split('₹')[1]) + parseInt(subTotal.innerText.split('₹')[1])
+			}`;
+			var previous = input.value;
+			input.addEventListener('input', async (e) => {
+				const cartItemRes = await fetch('/itemcount', {
+					method: 'POST',
+					body: JSON.stringify({
+						uid: '<%= user._id %>',
+						prodid: e.target.getAttribute('data-prodid'),
+						count: e.target.value
+					}),
+					headers: {
+						'Content-Type': 'application/json'
+					}
+				});
+				const itemData = await cartItemRes.json();
+				if (itemData.cart) window.location.reload();
+				if (e.target.value > previous) {
+					subTotal.innerText = `₹${
+						parseInt(price.getAttribute('data-price').split('₹')[1]) +
+						parseInt(subTotal.innerText.split('₹')[1])
+					}`;
+					price.innerText = `₹${
+						price.getAttribute('data-price').split('₹')[1] * e.target.value
+					}`;
+					const total =
+						parseInt(price.getAttribute('data-price').split('₹')[1]) +
+						parseInt(subTotal.innerText.split('₹')[1]);
+					previous = e.target.value;
+				} else {
+					subTotal.innerText = `₹${
+						parseInt(subTotal.innerText.split('₹')[1]) -
+						parseInt(price.getAttribute('data-price').split('₹')[1])
+					}`;
+					price.innerText = `₹${
+						price.getAttribute('data-price').split('₹')[1] * e.target.value
+					}`;
+					const total =
+						parseInt(price.getAttribute('data-price').split('₹')[1]) +
+						parseInt(subTotal.innerText.split('₹')[1]);
+					previous = e.target.value;
+				}
+			});
+		});
+	});
+	const remove = async (id) => {
+		try {
+      document.querySelector('.frame4').classList.remove("hide")
+			document.querySelector('.removeModal').style.display = 'block'
+			document.querySelector('.removeCartItem').addEventListener('click',async()=>{
+        const response = await fetch('/remove', {
+          method: 'POST',
+          body: JSON.stringify({
+            id,
+            _id: document.querySelector('.tbody').getAttribute('data-uid')
+          }),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        window.location.reload()
+      })
+      document.querySelector('.removeCartItemNo').addEventListener('click',()=>{window.location.reload()})
+			//window.location.reload()
+		} catch (e) {
+			console.log({ e });
+		}
+	}
+</script>
+<%-include('partials/footer.ejs')%>

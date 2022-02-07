@@ -1,0 +1,39 @@
+{
+	"name": "ecrackers",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"start": "node index.js",
+		"dev": "nodemon index.js",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sairajeev502/ecrackers.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/sairajeev502/ecrackers/issues"
+	},
+	"homepage": "https://github.com/sairajeev502/ecrackers#readme",
+	"dependencies": {
+		"bcrypt": "^5.0.1",
+		"compression": "^1.7.4",
+		"connect-flash": "^0.1.1",
+		"cookie-parser": "^1.4.5",
+		"dotenv": "^10.0.0",
+		"ejs": "^3.1.6",
+		"express": "^4.17.1",
+		"express-session": "^1.17.2",
+		"jsonwebtoken": "^8.5.1",
+		"mongoose": "^6.0.10",
+		"node-mailjet": "^3.3.4",
+		"razorpay": "^2.0.7"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.14"
+	}
+}

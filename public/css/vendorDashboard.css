@@ -1,0 +1,65 @@
+*{
+    letter-spacing: 0.4px;
+}
+.somecontent{display: flex;}
+.content{
+    width: 20%;
+    display: block;
+    min-height: calc(100vh - 20px);
+    background-color: #beecde;
+}
+.navbarColor{background-color: #ffffff;}
+.mainContainer{width: 80%}
+.active1{margin-left: -20%;}
+.mainContainerWidth{width: 100%;}
+
+.coll{background-color: grey;}
+.Sales{background-color: #fde2e4;}
+.Orders{background-color: #bee1e6;}
+.Profit{background-color: #eae4e9;}
+.Ocircle,.Pcircle,.Scircle{
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+}
+.Ocircle{background-color: #ffa69e;}
+.Pcircle{background-color: #b8f2e6;}
+.Scircle{background-color: #5e6472;}
+.chartcol{
+    width: 200px;
+    height: 200px;
+}
+.FeedbackContainer{
+    height: 250px;
+    width: 250px;
+}
+.Cracker1{background-color: #f7aef8}
+.Cracker2{background-color: #b388eb;}
+.Cracker3{background-color: #72ddf7;}
+.Cracker4{background-color: #8093f1;}
+.selectButton:hover{
+    background-color: rgb(255, 251, 245);
+
+}
+.profilePic{
+    background-color: grey;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.vendorDetails{
+    letter-spacing: 1px;
+    line-height: 5px;
+}
+.vendorEmail{font-size: 14px;}
+.faa{float: right;}
+.button-dark{
+    background-color: transparent;
+    border: none;
+}
+.list-group{
+    height: 250px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+a{color: white;}

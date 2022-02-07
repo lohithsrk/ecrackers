@@ -1,0 +1,129 @@
+<%-include('partials/header.ejs')%>
+<section class="mainnn">
+	<div class="frame7 hide">
+	  <div class="contactModel">
+	    <p class="text-center my-5 mx-auto">Message sent successfully</p>
+	    <div type="submit" class="button ConatctSend">  Close  </div>
+	  </div>
+	</div>
+	<!-- Header Area End Here -->
+	<!-- Begin Li's Breadcrumb Area -->
+	<div class="breadcrumb-area">
+		<div class="container">
+			<div class="breadcrumb-content">
+				<ul>
+					<li><a href="/">Home</a></li>
+					<li class="active">Contact Us</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- Li's Breadcrumb Area End Here -->
+	<!-- Begin Contact Main Page Area -->
+	<div class="contact-main-page mt-60 mb-40 mb-md-40 mb-sm-40 mb-xs-40">
+		<!-- <div class="container mb-60">
+                    <div id="google-map"></div>
+                </div> -->
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-5 offset-lg-1 col-md-12 order-1 order-lg-2">
+					<div class="contact-page-side-content">
+						<h3 class="contact-page-title">Contact Us</h3>
+						<p class="contact-page-message mb-25">
+							DigitranIT Software Solutions – Digital transformation technology,
+							consulting and solutions implementation company with two decades
+							experienced IT industry leaders. Our consultants with strong
+							technical expertise in Pega BPM, Sales Force CRM, Full stack
+							(MERN, MEAN) Web and App development, QA – Automation testing, AWS
+							and Google Cloud SAAS platforms, supporting the domestic and
+							international customers during their business and technology
+							consolidation, transformation initiatives..
+						</p>
+						<div class="single-contact-block">
+							<h4><i class="fa fa-fax"></i> Address</h4>
+							<p>
+								DigitranIT Software Solutions Private Limited Parthasarathi
+								Seeniammal Trust Premisis. Pudupair Village, Kundrathur,
+								Chennai, 600069
+							</p>
+						</div>
+						<div class="single-contact-block">
+							<h4><i class="fa fa-phone"></i> Phone</h4>
+							<p>Mobile: (+91) 73388 39489</p>
+							<p>Name: Avanthika Sampath</p>
+						</div>
+						<div class="single-contact-block last-child">
+							<h4><i class="fa fa-envelope-o"></i> Email</h4>
+							<p>mail.ecrackers@gmail.com</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-12 order-2 order-lg-1">
+					<div class="contact-form-content pt-sm-55 pt-xs-55">
+						<h3 class="contact-page-title">Tell Us Your Message</h3>
+						<div class="contact-form">
+							<form id="contact-form" action="/contact" method="post">
+								<div class="form-group">
+									<label>Your Name <span class="required">*</span></label>
+									<input
+										type="text"
+										name="customerName"
+										id="customername"
+										required
+									/>
+								</div>
+								<div class="form-group">
+									<label>Your Email <span class="required">*</span></label>
+									<input
+										type="email"
+										name="customerEmail"
+										id="customerEmail"
+										required
+									/>
+								</div>
+								<div class="form-group">
+									<label>Subject</label>
+									<input
+										type="text"
+										name="contactSubject"
+										id="contactSubject"
+									/>
+								</div>
+								<div class="form-group mb-30">
+									<label>Your Message</label>
+									<textarea
+										name="contactMessage"
+										id="contactMessage"
+									></textarea>
+								</div>
+								<div class="form-group">
+									<button
+										type="submit"
+										value="submit"
+										id="submit"
+										class="li-btn-3"
+										name="submit"
+									>
+										send
+									</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<script src="../js/header.js"></script>
+<script type="text/javascript">
+	document.querySelector('.li-btn-3').addEventListener('click',()=>{
+		document.querySelector('.frame7').classList.remove("hide")
+		document.querySelector('.contactModel').style.display = 'block'
+		document.querySelector('.ConatctSend').addEventListener('click',()=>{window.location('/')})
+	})
+</script>
+
+<!-- Contact Main Page Area End Here -->
+<!-- Begin Footer Area -->
+<%-include('partials/footer')%>

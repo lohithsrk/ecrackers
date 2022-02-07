@@ -1,0 +1,219 @@
+<%-include('partials/header.ejs')%>
+<section class="mainnn">
+            <!-- Header Area End Here -->
+            <!-- Begin Li's Breadcrumb Area -->
+            <div class="frame5 hide">
+              <div class="removeWihslistModal">
+                <p class="text-center my-5 mx-auto">Remove from Wishlist</p>
+                  <div class="d-flex p-2">
+                  <button class="removeWishlistItem btn btn-danger shadow-none">  REMOVE  </button>
+                  <button class=" removeWishlistItemNo btn btn-dark shadow-none">  NO  </button>
+                </div>
+              </div>
+              </div>
+            <div class="breadcrumb-area">
+                <div class="container">
+                    <div class="breadcrumb-content">
+                        <ul>
+                            <li><a href="/">Home</a></li>
+                            <li class="active">Wishlist</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Li's Breadcrumb Area End Here -->
+            <!--Wishlist Area Strat-->
+            <div class="wishlist-area pt-60 pb-60">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <form action="#">
+                                <div class="table-content table-responsive tableResponsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="li-product-remove">remove</th>
+                                                <th class="li-product-thumbnail">images</th>
+                                                <th class="cart-product-name">Product</th>
+                                                <th class="li-product-price">Unit Price</th>
+                                                <th class="li-product-stock-status">Stock Status</th>
+                                                <th class="li-product-add-cart">add to cart</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="tbody" data-uid="<%= user._id %>">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Wishlist Area End-->
+        </div></section>
+        <script src="../js/header.js"></script>
+
+        <!-- Body Wrapper End Here -->
+        <!-- jQuery-V1.12.4 -->
+        <script>
+                window.addEventListener('load',async()=>{
+                    const res = await fetch('/wishlistpage', {
+                            method: 'POST',
+                            body: JSON.stringify({ _id: "<%= user._id %>" }),
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        })
+                        const data=await res.json()
+                        data.forEach(d => {
+                            const tr=document.createElement('tr')
+                            const td1=document.createElement('td')
+                            const td2=document.createElement('td')
+                            const td3=document.createElement('td')
+                            const td4=document.createElement('td')
+                            const td5=document.createElement('td')
+                            const td6=document.createElement('td')
+                            const a1=document.createElement('a')
+                            const a2=document.createElement('a')
+                            const a3=document.createElement('a')
+                            const a4=document.createElement('a')
+                            const a5=document.createElement('a')
+                            const a6=document.createElement('a')
+                            const i1 = document.createElement('i')
+                            const img2=document.createElement('img')
+                            const span4=document.createElement('span')
+                            const span5=document.createElement('span')
+                            const span6=document.createElement('span')
+                            td1.setAttribute('class','li-product-remove')
+                            td1.setAttribute('title',"remove")
+                            td1.setAttribute('data-id',d.id)
+                            a1.setAttribute('href','#')
+                            i1.setAttribute('class','fa fa-times')
+                            i1.setAttribute('onclick',`removeProduct('${d.id}')`)
+                            a1.appendChild(i1)
+                            td1.appendChild(a1)
+                            tr.appendChild(td1)
+
+                            td2.setAttribute('class','li-product-thumbnail')
+                            img2.setAttribute('src',d.image)
+                            img2.setAttribute('alt',d.name)
+                            img2.setAttribute('class','imageResponsive');
+                      			img2.setAttribute('class','imageLarge')
+                            a2.setAttribute('href','#')
+                            a2.appendChild(img2)
+                            td2.appendChild(a2)
+                            tr.appendChild(td2)
+
+                            td3.setAttribute('class','li-product-name')
+                            a3.setAttribute('href','#')
+                            a3.innerText=d.name
+                            td3.appendChild(a3)
+                            tr.appendChild(td3)
+
+                            td4.setAttribute('class','li-product-price')
+                            span4.setAttribute('class','amount')
+                            span4.innerText=d.discount
+                            td4.appendChild(span4)
+                            tr.appendChild(td4)
+
+                            td5.setAttribute('class','li-product-stock-status')
+                            span5.setAttribute('class','in-stock')
+                            span5.innerText='In stock'
+                            td5.appendChild(span5)
+                            tr.appendChild(td5)
+
+                            td6.setAttribute('class','li-product-add-cart')
+                            span6.setAttribute('class','add-to-cart-link')
+                            span6.setAttribute('id',d.id)
+                            span6.setAttribute('onclick',`cartUpdate('${d.id}')`)
+                            span6.style.cursor = "pointer"
+                            span6.innerText='Add to Cart'
+                            td6.appendChild(span6)
+                            tr.appendChild(td6)
+                            document.querySelector(".tbody").appendChild(tr)
+                        });
+
+                const wishdetails=async()=>{
+                const resp = await fetch('/wishlistdetails', {
+                    method: 'POST',
+                    body: JSON.stringify({ _id: "<%=user===null?null: user._id %>" }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+
+                const data = await resp.json()
+                const wishlistCount = data.wishlist.length
+                document.querySelectorAll('.wishlist-item-count')[0].textContent = wishlistCount ?? 0
+            }
+                const respo = await fetch('/cartDetails', {
+                    method: 'POST',
+                    body: JSON.stringify({ _id: "<%=user===null? null : user._id %>" }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+
+                const datas = await respo.json()
+                const cartCount = data.cart.reduce((acc, val) => acc + val.count, 0)
+                document.querySelectorAll('.cart-item-count')[1].textContent = cartCount ?? 0
+                document.querySelector(".minicart-product-list").innerHTML = datas.cart.reduce((acc, product) => {
+                    acc += `
+                        <li>
+                            <a href="/single-product/${product.id}" class="minicart-product-image">
+                                <img src="${product.image}" alt="cart products">
+                            </a>
+                            <div class="minicart-product-details">
+                                <h6><a href="/single-product/${product.id}">${product.name}</a></h6>
+                                <span>${product.discount} x ${product.count}</span>
+                            </div>
+                            <button class="close" title="Remove" data-id="${product.id}">
+                                <i class="fa fa-close" data-id="${product.id}"></i>
+                            </button>
+                        </li>`
+                    return acc
+                }, '')
+                wishdetails()
+            })
+                document.querySelector('.signout').addEventListener('click',async ()=>{
+                const res = await fetch('/signout', {method: 'POST',body:{}})
+                window.location.reload()
+            })
+
+                    const cartUpdate=async(id)=>{
+                        const res = await fetch('/cartUpdate', {
+                            method: 'POST',
+                            body: JSON.stringify({
+                                id: id,
+                                uid:document.querySelector('.tbody').getAttribute("data-uid")
+                            }),
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        })
+                        window.location.reload()
+                    }
+                    const removeProduct=async(id)=>{
+                      try {
+                        document.querySelector('.frame5').classList.remove("hide")
+                        document.querySelector('.removeWihslistModal').style.display = 'block'
+                        document.querySelector('.removeWishlistItem').addEventListener('click',async()=>{
+                        const response = await fetch('/wishlistremove', {
+                              method: 'POST',
+                              body: JSON.stringify({ id, _id: document.querySelector('.tbody').getAttribute("data-uid") }),
+                              headers: {
+                                  'Content-Type': 'application/json'
+                              }
+                          })
+                          window.location.reload()
+                        })
+                        document.querySelector('.removeWishlistItemNo').addEventListener('click',()=>{
+                          window.location.reload()
+                        })
+                  			//window.location.reload()
+                  		} catch (e) {
+                  			console.log({ e });
+                  		}
+                    }
+        </script>
+<%-include('partials/footer.ejs')%>

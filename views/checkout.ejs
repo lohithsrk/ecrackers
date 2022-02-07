@@ -1,0 +1,484 @@
+<%-include('partials/header')%>
+<section class="mainnn"> <!-- Header Area End Here -->
+<!-- Begin Li's Breadcrumb Area -->
+<div class="frame8 hide">
+  <div class="paymentSuccessful">
+    <p class="text-center my-5 mx-auto">Payment Successful</p>
+    <div class=" paymentSuccess successBtn">  CLOSE  </div>
+  </div>
+</div>
+<div class="frame9 hide">
+  <div class="paymentFailure">
+    <p class="text-center my-5 mx-auto">Payment failed</p>
+    <div class="button paymentFailed">  Try again  </div>
+  </div>
+</div>
+<div class="frame10 hide">
+  <div class="detailsModal">
+    <p class="text-center my-5 mx-auto">Please enter all the details</p>
+    <div class="button detailsError">  Try again  </div>
+  </div>
+</div>
+<div class="breadcrumb-area">
+  <div class="container">
+    <div class="breadcrumb-content">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li class="active">Checkout</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- Li's Breadcrumb Area End Here -->
+<!--Checkout Area Strat-->
+<div class="checkout-area pt-60 pb-30">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="coupon-accordion">
+          <!--Accordion Start-->
+
+          <div id="checkout-login" class="coupon-content">
+            <div class="coupon-info">
+
+              <form action="#">
+                <p class="form-row-first">
+                  <label>Username or email <span class="required">*</span></label>
+                  <input type="text" />
+                </p>
+                <p class="form-row-last">
+                  <label>Password <span class="required">*</span></label>
+                  <input type="text" />
+                </p>
+                <p class="form-row">
+                  <input value="Login" type="submit" />
+                  <label>
+
+                  </label>
+                </p>
+
+              </form>
+            </div>
+          </div>
+          <!--Accordion End-->
+          <!--Accordion Start-->
+
+          <div id="checkout_coupon" class="coupon-checkout-content">
+            <div class="coupon-info">
+              <form action="#">
+                <p class="checkout-coupon">
+                  <input placeholder="Coupon code" type="text" />
+                  <input value="Apply Coupon" type="submit" />
+                </p>
+              </form>
+            </div>
+          </div>
+          <!--Accordion End-->
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6 col-12">
+        <form action="/checkout" method="post">
+          <div class="checkbox-form">
+            <h3>Billing Details</h3>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="checkout-form-list">
+                  <label for="FirstName">First Name <span class="required">*</span></label>
+                  <input placeholder="Enter First Name" class="firstName" type="text" name="FirstName" required />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="checkout-form-list">
+                  <label>Last Name <span class="required">*</span></label>
+                  <input placeholder="Enter Last Name" type="text" class="LastName" name="LastName" required />
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="checkout-form-list">
+                  <label>LandMark</label>
+                  <input placeholder="Enter LandMark" type="text" class="CompanyName" name="CompanyName"  required/>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="checkout-form-list">
+                  <label>Address <span class="required">*</span></label>
+                  <input placeholder="Street address" type="text" class="Address" name="Address" required/>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="checkout-form-list">
+                  <input placeholder="Apartment, suite, unit etc. (optional)" type="text" class="ApartmentLocation" name="ApartmentLocation" required />
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="checkout-form-list">
+                  <label>Town / City <span class="required">*</span></label>
+                  <input type="text" name="TownOrCity" class="TownOrCity" required />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="checkout-form-list">
+                  <label>State <span class="required">*</span></label>
+                  <input placeholder="" type="text" class="state" name="state" required />
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="checkout-form-list">
+                  <label>Postcode / Zip <span class="required">*</span></label>
+                  <input placeholder="" type="text" class="PIN" name="PIN" required/>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="checkout-form-list">
+                  <label>Email Address <span class="required">*</span></label>
+                  <input placeholder="" type="email" class="Email" name="Email" required/>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="checkout-form-list">
+                  <label>Phone <span class="required">*</span></label>
+                  <input type="text" name="MobileNo" class="MobileNo" required/>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </form>
+      </div>
+      <div class="col-lg-6 col-12">
+        <div class="your-order">
+          <h3>Your order</h3>
+          <div class="your-order-table table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th class="cart-product-name">Product</th>
+                  <th class="cart-product-total">Total</th>
+                </tr>
+              </thead>
+              <tbody data-uid="<%= user === null ? null : user._id%>" class="tbody">
+                <tr class="cart_item" >
+                </tr>
+              </tbody>
+              <tfoot class="tfoot">
+                <tr class="order-total">
+                  <th>Order Total</th>
+                  <td>
+                    <strong><span class="amount totalAmount">₹ 0</span></strong>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+          <div class="payment-method">
+            <div class="order-button-payment ">
+              <button class="payment-Button btn btn-dark text-light" type="submit">
+                Place Order
+              </button>
+            </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--Checkout Area End-->
+<!-- Begin Footer Area -->
+<%-include('partials/footer')%>
+</section>
+<script src="../js/header.js"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+// document.querySelector('.submitButtonn').addEventListener('click',async (e)=>{
+//   //e.preventDefault()
+//   const removeCart=await fetch('/clearCart'){
+//     method:'POST',
+//     body: JSON.stringify({_id: "<%= user === null ? null : user.id %>"}),
+//     headers:{ 'Content-Type' : 'application/json' }
+//   }
+// })
+    window.onload=async()=>{
+      const shopping_cart = await fetch('/shopping-cart', {
+        method: 'POST',
+        body: JSON.stringify({
+          _id: document.querySelector('.tbody').getAttribute('data-uid')
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      const shopping_data = await shopping_cart.json();
+      //cart quantity
+      const cartQuantiy = await fetch('/cartDetails', {
+        method: 'POST',
+        body: JSON.stringify({ _id: "<%= user === null ? null : user._id%>" }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+        const totalResp = await fetch('/getTotal', {
+            method: 'POST',
+            body: JSON.stringify({ _id: "<%= user === null ? null : user._id%>" }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        const { total: totalDB } = await totalResp.json()
+                const res = await fetch('/cartDetails', {
+                    method: 'POST',
+                    body: JSON.stringify({ _id: "<%= user===null ? null : user._id %>" }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+
+                const data = await res.json()
+                const cartCount = data.cart.reduce((acc, val) => acc + val.count, 0)
+                document.querySelectorAll('.cart-item-count')[1].textContent = cartCount ?? 0
+                document.querySelector(".minicart-product-list").innerHTML = data.cart.reduce((acc, product) => {
+                    acc += `
+                        <li>
+                            <a href="/single-product" class="minicart-product-image">
+                                <img src="${product.image}" alt="cart products">
+                            </a>
+                            <div class="minicart-product-details">
+                                <h6><a href="/single-product">${product.name}</a></h6>
+                                <span>${product.discount} x ${product.count}</span>
+                            </div>
+                            <button class="close" title="Remove" data-id="${product.id}">
+                                <i class="fa fa-close" data-id="${product.id}"></i>
+                            </button>
+                        </li>`
+                    return acc
+                }, '')
+
+                const remove = document.querySelectorAll('button.close[data-id]')
+                const update = async (e) => {
+                    const productID = e.target.getAttribute('data-id');
+                    try {
+                        const response = await fetch('/remove', {
+                            method: 'POST',
+                            body: JSON.stringify({ id: productID, _id: "<%=user===null?null: user._id %>" }),
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        })
+                        const details = await response.json()
+                        const res = await fetch('/cartDetails', {
+                            method: 'POST',
+                            body: JSON.stringify({ _id: "<%= user===null ?null: user._id %>" }),
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        })
+
+                        const data = await res.json()
+                        const cartCount = data.cart.length
+                        document.querySelectorAll('.cart-item-count')[1].textContent = cartCount ?? 0
+
+                        document.querySelector(".minicart-product-list").innerHTML = data.cart.reduce((acc, product) => {
+                            acc += `<li>
+                                    <a href="/single-product" class="minicart-product-image">
+                                        <img src="${product.image}" alt="cart products">
+                                    </a>
+                                    <div class="minicart-product-details">
+                                        <h6 class="productNameResponsive"><a href="/single-product/${product.id}">${product.name}</a></h6>
+                                        <span>${product.discount} x ${product.count}</span>
+                                    </div>
+                                    <button class="close" data-id="${product.id}">
+                                        <i class="fa fa-close" data-id="${product.id}"></i>
+                                    </button>
+                                </li>`
+                            return acc
+                        }, '')
+                        window.location.reload()
+                    } catch (e) {
+                        alert("Can't remove item from cart")
+                    }
+                }
+                remove.forEach(elmt => {
+                    elmt.addEventListener('click', e => {
+                      e.preventDefault();
+                       update(e)
+                    })
+                })
+            const wishdetails=async()=>{
+                const res = await fetch('/wishlistdetails', {
+                    method: 'POST',
+                    body: JSON.stringify({ _id: "<%=user===null?null: user._id %>" }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+
+                const data = await res.json()
+                const wishlistCount = data.wishlist.length
+                document.querySelectorAll('.wishlist-item-count')[0].textContent = wishlistCount ?? 0
+            }
+            const addToWishlistLink = document.querySelectorAll(".add-to-wishlist-link")
+            addToWishlistLink.forEach(addToWishlist => {
+                addToWishlist.addEventListener('click', async e => {
+                    e.preventDefault()
+                    if (document.querySelector('.msg').getAttribute('data-msg').length > 0) {
+			alert(document.querySelector('.msg').getAttribute('data-msg'));
+			return;
+		}
+                    try {
+                        const res = await fetch('/wishlistUpdate', {
+                            method: 'POST',
+                            body: JSON.stringify({
+                                id: e.target.id,
+                                uid: e.target.getAttribute("data-uid")
+                            }),
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        })
+                        const data = await res.json()
+                        wishdetails()
+
+                    } catch (e) {
+                        console.log({ e })
+                    }
+                })
+            })
+            window.addEventListener('load',()=>{
+                wishdetails()
+            })
+      const cartData=await cartQuantiy.json();
+      const productLengthArray=[],PriceArray=[]
+      const productLength= cartData.cart.forEach(element => {return productLengthArray.push(parseInt(element.count))});
+      for (let index = 0; index < shopping_data.length; index++) {
+        var productPrice=shopping_data[index].discount;
+        var productCount=productLengthArray[index];
+        //tbody
+        var tr1=document.createElement("tr")
+        var td1=document.createElement("td")
+        var td2=document.createElement("td")
+        var multiply=document.createElement("span")
+        var span=document.createElement("span")
+
+        tr1.setAttribute("class","cart_item");
+        td1.setAttribute("class","cart-product-name")
+        td2.setAttribute("class","cart-product-total")
+
+        tr1.appendChild(td1)
+        tr1.appendChild(td2);
+
+        var price=productPrice.replace("₹ ","")
+
+        td1.innerText=`${shopping_data[index].name}`
+        td2.innerText="₹ "+price * productCount;
+        td1.appendChild(multiply);
+        td1.appendChild(span);
+        multiply.innerText=" x "
+        span.innerText=productCount
+
+        document.querySelector('.tbody').appendChild(tr1)
+
+        //cart total
+        var totalPrice=parseInt(price) * parseInt(productCount)
+        PriceArray.push(parseInt(totalPrice))
+      }
+
+      document.querySelector(".totalAmount").textContent = `₹ ${totalDB}` ;
+      //payment section
+      var paymentDesc=[],paymentSuccess;
+      var paymentSuccessFull=false
+      shopping_data.forEach((d)=>{return paymentDesc.push(" Product Name : " + (d.name) + " , " + " Price : " +(d.discount) + " , " + " Qunatity : " + (d.count))})
+      //console.log(shopping_data[0].count)
+      var date=new Date();
+      date =	date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+      var options = {
+        "key": '<%= keyid %>',
+        "amount": `${+totalDB * 100}` ,
+        "currency": "INR",
+        "name": "ecrackers",
+        "description": `${paymentDesc}`,
+        "handler": async function (response){
+          //console.log(response.razorpay_payment_id)
+         if(response.razorpay_payment_id){
+            const resp = await fetch('/paymentDetail', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                            paymentID: response.razorpay_payment_id,
+                            userID: "<%= user._id %>",
+                            description: paymentDesc
+                        }),
+                    headers: {
+                            'Content-Type': 'application/json'
+                        }
+                })
+                 const data = await resp.json()
+           paymentSuccessFull= true
+           console.log(paymentSuccessFull)
+           if(paymentSuccessFull){
+             document.querySelector('.frame8').classList.remove("hide")
+             document.querySelector('.paymentSuccessful').style.display = 'block'
+             document.querySelector('.paymentSuccess').addEventListener('click',()=>{window.location.assign("/")})
+           }
+         }
+          const orders=await fetch('/order-placed', {
+              method: 'POST',
+              body: JSON.stringify({
+                FirstName: document.querySelector(".firstName").value,
+                LastName: document.querySelector(".LastName").value,
+                CompanyName: document.querySelector(".CompanyName").value,
+                Address: document.querySelector(".Address").value,
+                ApartmentLocation: document.querySelector(".ApartmentLocation").value,
+                TownOrCity: document.querySelector(".TownOrCity").value,
+                state: document.querySelector(".state").value,
+                PIN: document.querySelector(".PIN").value,
+                Email: document.querySelector(".Email").value,
+                MobileNo: document.querySelector(".MobileNo").value,
+                description: `${paymentDesc}`,
+                amount: `${totalDB}`
+              }),
+              headers: {
+                  'Content-Type': 'application/json'
+              }
+          })
+        },
+        "notes" : {
+          "description":`"Orders : " ${paymentDesc}`,
+          "date":`"Date : "${ date }`
+        },
+        "theme": {
+          "color": "#2300a3"
+        }
+      };
+      var razorpayObject = new Razorpay(options);
+      console.log(razorpayObject);
+      razorpayObject.on('payment.failed', function (response){
+        //alert("payment failed. Please try again")
+        if(!paymentSuccessFull){
+          document.querySelector('.frame9').classList.remove("hide")
+          document.querySelector('.paymentFailure').style.display = 'block'
+          document.querySelector('.paymentFailed').addEventListener('click',()=>{window.location.assign("/")})
+        }
+      });
+      document.querySelector('.payment-Button').addEventListener("click" ,async function(e){
+        if(!document.querySelector('.firstName').value ||
+        !document.querySelector('.LastName').value ||
+        !document.querySelector('.CompanyName').value ||
+        !document.querySelector('.Address').value ||
+        !document.querySelector('.ApartmentLocation').value ||
+        !document.querySelector('.TownOrCity').value ||
+        !document.querySelector('.state').value ||
+        !document.querySelector('.PIN').value ||
+        !document.querySelector('.Email').value ||
+        !document.querySelector('.MobileNo').value){
+          document.querySelector('.frame10').classList.remove("hide")
+          document.querySelector('.detailsModal').style.display = 'block'
+          document.querySelector('.detailsError').addEventListener('click',()=>{  document.querySelector('.frame10').classList.add("hide")})
+        }else{
+          await razorpayObject.open();
+          e.preventDefault();
+        }
+      })
+    }
+</script>
